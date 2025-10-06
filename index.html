@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Farm MRL & AMU Portal</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0f9d58, #2ecc71);
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    header {
+      background-color: rgba(0, 0, 0, 0.2);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      letter-spacing: 1px;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #d4ffd0;
+    }
+
+    .container {
+      text-align: center;
+      padding: 3rem 2rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      max-width: 800px;
+      margin: 0 auto 1.5rem;
+      line-height: 1.6;
+    }
+
+    button {
+      background-color: #1b5e20;
+      border: none;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #2e7d32;
+      transform: scale(1.05);
+    }
+
+    footer {
+      background-color: rgba(0, 0, 0, 0.3);
+      padding: 1rem;
+      text-align: center;
+      font-size: 0.9rem;
+      margin-top: 3rem;
+    }
+
+    .page {
+      display: none;
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    .active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .card {
+      background: rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 700px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-width: 500px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    input, select, textarea {
+      padding: 10px;
+      border-radius: 6px;
+      border: none;
+      outline: none;
+      font-size: 1rem;
+    }
+
+    #adviceBox {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 20px;
+      display: none;
+      animation: fadeIn 1s ease-in-out;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Digital Farm MRL & AMU Portal</h1>
+    <nav>
+      <a href="#" onclick="showPage('home')">Home</a>
+      <a href="#" onclick="showPage('about')">About</a>
+      <a href="#" onclick="showPage('features')">Features</a>
+      <a href="#" onclick="showPage('farmform')">Farm Form</a>
+      <a href="#" onclick="showPage('contact')">Contact</a>
+    </nav>
+  </header>
+
+  <div id="home" class="container page active">
+    <h2>Welcome to Digital Farm MRL & AMU Portal</h2>
+    <p>Empowering farmers, veterinarians, and regulators through smart digital technology for monitoring antimicrobial usage and ensuring food safety.</p>
+    <button onclick="showPage('about')">Explore More</button>
+  </div>
+
+  <div id="about" class="container page">
+    <h2>About the Portal</h2>
+    <div class="card">
+      <p>This platform enables real-time monitoring of antimicrobial usage (AMU) and compliance with Maximum Residue Limits (MRL). It integrates with veterinary systems and provides blockchain-based traceability to ensure transparency and trust.</p>
+    </div>
+    <button onclick="showPage('features')">See Features</button>
+  </div>
+
+  <div id="features" class="container page">
+    <h2>Key Features</h2>
+    <div class="card">
+      <ul style="text-align:left;max-width:600px;margin:auto;">
+        <li>📊 Real-time dashboards for AMU & MRL monitoring.</li>
+        <li>⚕️ Veterinary prescription integration and alerts.</li>
+        <li>🔗 Blockchain-backed traceability for data integrity.</li>
+        <li>📱 Mobile app for on-field data entry by farmers.</li>
+        <li>📈 Analytics for policy-making and farm optimization.</li>
+      </ul>
+    </div>
+    <button onclick="showPage('farmform')">Enter Farm Details</button>
+  </div>
+
+  <div id="farmform" class="container page">
+    <h2>Enter Farm & Animal Information</h2>
+    <form id="farmForm">
+      <label>Farm Name:</label>
+      <input type="text" id="farmName" placeholder="Enter your farm name" required>
+
+      <label>Owner Name:</label>
+      <input type="text" id="ownerName" placeholder="Enter owner's name" required>
+
+      <label>Pet/Animal Type:</label>
+      <select id="animalType" required>
+        <option value="">Select animal type</option>
+        <option value="Cattle">Cattle</option>
+        <option value="Goat">Goat</option>
+        <option value="Poultry">Poultry</option>
+        <option value="Pig">Pig</option>
+      </select>
+
+      <label>Antimicrobial Used:</label>
+      <input type="text" id="antimicrobial" placeholder="e.g. Tetracycline, Amoxicillin" required>
+
+      <label>Dosage (mg/kg):</label>
+      <input type="number" id="dosage" placeholder="Enter dosage" required>
+
+      <label>Withdrawal Period (days):</label>
+      <input type="number" id="withdrawal" placeholder="Enter withdrawal period" required>
+
+      <label>Additional Notes:</label>
+      <textarea id="notes" placeholder="Enter additional notes"></textarea>
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <div id="adviceBox"></div>
+  </div>
+
+  <div id="contact" class="container page">
+    <h2>Contact Us</h2>
+    <div class="card">
+      <p>For collaboration or queries, please contact:</p>
+      <p><strong>Email:</strong> info@digitalfarm.gov.in</p>
+      <p><strong>Phone:</strong> +91 1800-202-333</p>
+    </div>
+    <button onclick="showPage('home')">Back to Home</button>
+  </div>
+
+  <footer>
+    <p>© 2025 Ministry of Fisheries, Animal Husbandry & Dairying | Designed with ❤️ for Sustainable Livestock Management</p>
+  </footer>
+
+  <script>
+    function showPage(pageId) {
+      const pages = document.querySelectorAll('.page');
+      pages.forEach(page => page.classList.remove('active'));
+      document.getElementById(pageId).classList.add('active');
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+
+    const form = document.getElementById('farmForm');
+    const adviceBox = document.getElementById('adviceBox');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const animal = document.getElementById('animalType').value;
+      const dosage = parseFloat(document.getElementById('dosage').value);
+      const withdrawal = parseInt(document.getElementById('withdrawal').value);
+      const antimicrobial = document.getElementById('antimicrobial').value;
+
+      let advice = `<h3>Farm Report & Prototype Advice</h3>`;
+      advice += `<p><strong>Animal:</strong> ${animal}</p>`;
+      advice += `<p><strong>Antimicrobial:</strong> ${antimicrobial}</p>`;
+
+      if (dosage > 20) {
+        advice += `<p>⚠️ The dosage seems high. Consult a veterinarian to ensure it aligns with recommended levels for ${animal}.</p>`;
+      } else {
+        advice += `<p>✅ Dosage appears to be within safe limits for ${animal}. Continue monitoring feed and health conditions.</p>`;
+      }
+
+      if (withdrawal < 5) {
+        advice += `<p>⚠️ Withdrawal period is too short. Ensure at least 5-7 days before milk/meat processing to meet MRL standards.</p>`;
+      } else {
+        advice += `<p>✅ Withdrawal period is appropriate. Follow hygiene and monitoring protocols strictly.</p>`;
+      }
+
+      advice += `<p>🧠 Always maintain detailed records of AMU and seek professional veterinary guidance for sustainable farming.</p>`;
+
+      adviceBox.innerHTML = advice;
+      adviceBox.style.display = 'block';
+    });
+  </script>
+</body>
+</html>
